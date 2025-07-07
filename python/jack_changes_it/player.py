@@ -12,5 +12,7 @@ class Player:
     def draw_card():
         pass
 
-    def has_won():
-        pass
+    def has_won(self):
+        if self.card_count == 0:
+            return self.name, True
+        return
