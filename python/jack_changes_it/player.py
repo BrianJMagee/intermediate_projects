@@ -12,6 +12,6 @@ class Player:
 
 
     def has_won(self):
-        if self.card_count == 0:
+        if len(self.hand) == 0:
             return self.name, True
         return self.name, False

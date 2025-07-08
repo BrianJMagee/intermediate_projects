@@ -9,7 +9,7 @@ class Jack_Change_It:
         self.player_id = None
         self.active_player = None
         self.game_direction = "left"
-        self.play_area = None
+        self.play_area = []
         self.discard_area = []
 
 

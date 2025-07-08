@@ -42,7 +42,9 @@ class Change_It_App:
             count += 1
 
     def get_input(self):
-        self.my_game.active_player
+        choice = int(self.input("Please enter a card to add to your hand to play: "))
+        return choice
 
-    def handle_input():
-        pass
+    def handle_input(self, choice):
+        #takes the card at the index "choice" and passes it to the game
+        self.my_game.handle_card(self.my_game.active_player.hand[choice])
