@@ -2,13 +2,24 @@ from player import Player
 from deck import Deck
 
 class Jack_Change_It:
-    def __init__(self, player_count):
-        self.players = self.create_players(player_count=player_count, name="Brian")
+    def __init__(self):
+        self.player_count = 0
+        self.players = []
         self.deck = Deck()
-        self.player_id = 0
-        self.active_player = self.players[self.player_id]
+        self.player_id = None
+        self.active_player = None
         self.game_direction = "left"
         self.play_area = None
+        self.discard_area = []
+
+
+    def start_game(self, player_names):
+        for name in player_names:
+            self.players.append(Player(name, self.deck))
+            self.players[self.player_count].draw()
+            self.player_count += 1
+        self.player_id = 0
+        self.active_player = self.players[self.player_id]
 
     def game_over(self):
         return self.active_player.has_won()
@@ -18,27 +29,28 @@ class Jack_Change_It:
         self.player_id += 1
         self.active_player = self.players[self.player_id]
 
-    def handle_card(self, card):
+    def handle_card(self, card, new_suit=None):
             match card:
-                
-                case ace_hearts:
-
-                case two:
-                    
+                case "ace_hearts":
                     pass
                 
-                case five_hearts:
+                case "two":
+                    self.active_player.draw
+                    pass
+                
+                case "five_hearts":
                     
                     pass
 
-                case eight:
+                case "eight":
                     #toggle player twice
-                    pass
+                    self.toggle_player()
+                    self.toggle_player()
 
-                case jack:
+                case "jack":
                     active_suit = new_suit
                     return active_suit
-                case queen:
+                case "queen":
                     if direction == "left":
                         direction = "right"
                         return direction

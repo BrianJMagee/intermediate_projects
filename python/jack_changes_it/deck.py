@@ -34,17 +34,17 @@ class Deck:
                 for x in range(1, 3):
                     player_hand.append(self.top_card)
                     self.remove(2)
-                    return player_hand
+                return player_hand
             case 5: 
                 for x in range(1, 4):
                     player_hand.append(self.top_card)
                     self.remove(5)
-                    return player_hand
+                return player_hand
             case 7:
                 for x in range(1,8):
                     player_hand.append(self.top_card)
                     self.remove(5)
-                    return player_hand
+                return player_hand
             case _:
                 pass
 

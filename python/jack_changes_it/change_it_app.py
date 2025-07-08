@@ -2,12 +2,16 @@ from jack_change_it import Jack_Change_It
 
 class Change_It_App:
     def __init__(self, input = input, output = print):
-        self.my_game = Jack_Change_It(5)
-        self.play = True
+        self.my_game = Jack_Change_It()
+        self.loop = True
         self.menu = ["Play card", "Draw card"]
+        self.input = input
+        self.output = output
     
     def play(self):
-        while self.play:
+        names = ["Brian", "Joseph", "Kevin", "Magee"]
+        self.my_game.start_game(names)
+        while self.loop:
             self.output("******************************************")
             self.output("Jack Change it!!")
             #prints output
@@ -30,13 +34,12 @@ class Change_It_App:
 
     def print_output(self):
         count = 1
-
+        name = self.my_game.active_player.name
         self.output(f"Player: {self.my_game.active_player.name}")
         self.output(f"Your hand: ")
-        for card in self.my_game.active_player.get_hand():
-            for suit, rank in card:
-                self.output(f"{count}: {rank} of {suit}")
-                count += 1
+        for card in self.my_game.active_player.hand:
+            self.output(f"{count}: {card.rank} of {card.suit}")
+            count += 1
 
     def get_input(self):
         self.my_game.active_player
