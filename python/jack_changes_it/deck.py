@@ -28,23 +28,24 @@ class Deck:
     def reset(self):
         pass
 
-    def draw_cards(self, how_many, player_hand):
+    def draw_cards(self, how_many):
+        new_cards = []
         match how_many:
             case 2: 
                 for x in range(1, 3):
-                    player_hand.append(self.top_card)
+                    new_cards.append(self.top_card)
                     self.remove(2)
-                return player_hand
+                return new_cards
             case 5: 
                 for x in range(1, 4):
-                    player_hand.append(self.top_card)
+                    new_cards.append(self.top_card)
                     self.remove(5)
-                return player_hand
+                return new_cards
             case 7:
                 for x in range(1,8):
-                    player_hand.append(self.top_card)
+                    new_cards.append(self.top_card)
                     self.remove(5)
-                return player_hand
+                return new_cards
             case _:
                 pass
 

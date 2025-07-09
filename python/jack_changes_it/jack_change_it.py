@@ -6,7 +6,7 @@ class Jack_Change_It:
         self.player_count = 0
         self.players = []
         self.deck = Deck()
-        self.player_id = None
+        self.active_player_id = 0
         self.active_player = None
         self.game_direction = "left"
         self.play_area = []
@@ -15,23 +15,38 @@ class Jack_Change_It:
 
     def start_game(self, player_names):
         for name in player_names:
-            self.players.append(Player(name, self.deck))
-            self.players[self.player_count].draw()
-            self.player_count += 1
-        self.player_id = 0
-        self.active_player = self.players[self.player_id]
+            self.players.append(Player(name))   #create player
+            self.active_player = self.players[self.active_player_id]    #set new player as active player
+            hand = self.draw_for_player(7)  #draw 7 cards for player
+            self.active_player.recieve_cards(hand)  #give the player the cards
+            self.active_player_id += 1
+        self.toggle_player()
+        return
 
     def game_over(self):
         return self.active_player.has_won()
         
 
     def toggle_player(self):
-        self.player_id += 1
-        self.active_player = self.players[self.player_id]
+        self.active_player_id += 1
+        
+        if self.active_player_id >= len(self.players):
+            self.active_player_id = 0
+        else:
+            self.active_player = self.players[self.active_player_id]
+
+    def play_for_player(self, choice):
+        cards_to_play = self.active_player.play_card(choice)
+        self.handle_card(cards_to_play)
+
+    def draw_for_player(self, amount):
+        new_cards = []
+        new_cards = self.deck.draw_cards(how_many=amount)
+        return new_cards
 
     def handle_card(self, card, new_suit=None):
             match card:
-                case "ace_hearts":
+                case if card.rank == 1 and card.suit == "hearts":
                     pass
                 
                 case "two":
@@ -59,8 +74,6 @@ class Jack_Change_It:
                     return direction
                 case _:pass
 
-    def draw_for_player():
-        pass
 
     @staticmethod
     def is_valid_choice():

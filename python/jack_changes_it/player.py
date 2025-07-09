@@ -4,10 +4,17 @@ class Player:
         self.hand = []
 
     def play_card(self, choice):
-        pass
+        hand_to_play = []
+        for crd in choice:
+            hand_to_play.append(self.hand[crd])
+            choice.pop(crd)
+        return hand_to_play
+        
 
-    def draw(self, how_many=7):
-        pass
+    def recieve_cards(self, new_cards):
+        for crd in new_cards:
+            self.hand.append(crd)
+        return
 
 
     def has_won(self):

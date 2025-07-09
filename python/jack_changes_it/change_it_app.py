@@ -9,13 +9,27 @@ class Change_It_App:
         self.output = output
     
     def play(self):
-        names = ["Brian", "Joseph", "Kevin", "Magee"]
+        self.output("Please enter each player's name")
+        count = 1
+        names = []
+
+        while self.loop:
+            name = self.input(f"Player {count} name: ")
+            names.append(name)
+            count+=1
+
+            another = self.input("Add another player y/n: ")
+            if another == "n":
+                self.loop = False
+        
         self.my_game.start_game(names)
+
+        self.loop = True
         while self.loop:
             self.output("******************************************")
             self.output("Jack Change it!!")
             #prints output
-            self.print_output()
+            self.print_hand()
 
             #gets input from active player
             choice = self.get_input()
@@ -24,17 +38,17 @@ class Change_It_App:
             self.handle_input(choice)
             
             #checks if game is over
-            active_player, self.play = self.my_game.game_over()
+            active_player, is_over = self.my_game.game_over()
 
-            if self.play == False:
+            if is_over == False:
                 self.output(f"{active_player} has won!!")
                 self.output("******************************************")
+                break
 
             
 
-    def print_output(self):
+    def print_hand(self):
         count = 1
-        name = self.my_game.active_player.name
         self.output(f"Player: {self.my_game.active_player.name}")
         self.output(f"Your hand: ")
         for card in self.my_game.active_player.hand:
@@ -42,9 +56,9 @@ class Change_It_App:
             count += 1
 
     def get_input(self):
-        choice = int(self.input("Please enter a card to add to your hand to play: "))
+        choice = int(self.input("Please enter the cards you want to play: "))
         return choice
 
-    def handle_input(self, choice):
+    def handle_input(self, choice, new_suit=None):
         #takes the card at the index "choice" and passes it to the game
-        self.my_game.handle_card(self.my_game.active_player.hand[choice])
+        self.my_game.handle_card(choice, new_suit=new_suit)
