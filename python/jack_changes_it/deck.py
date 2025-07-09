@@ -49,4 +49,7 @@ class Deck:
                 pass
 
     def remove(self, how_many):
-        self.this_deck.pop(0)
+        popped_card = self.this_deck.pop(0)
+        
+
+        #should also add to discard pile in jack_change_it. Pop returns the removed element

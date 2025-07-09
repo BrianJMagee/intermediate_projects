@@ -59,6 +59,9 @@ class Jack_Change_It:
                     return direction
                 case _:pass
 
+    def draw_for_player():
+        pass
+
     @staticmethod
     def is_valid_choice():
         pass

@@ -1,14 +1,13 @@
 class Player:
-    def __init__(self, name, deck):
+    def __init__(self, name):
         self.name = name
         self.hand = []
-        self.deck = deck
 
     def play_card(self, choice):
         pass
 
     def draw(self, how_many=7):
-        self.hand = self.deck.draw_cards(how_many=how_many, player_hand=self.hand)
+        pass
 
 
     def has_won(self):
