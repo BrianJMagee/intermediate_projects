@@ -1,19 +1,16 @@
-class weather:
-    def __init__(self):
+import requests
+
+class WeatherAPI:
+    def __init__(self, api_key):
+        self.api_key = api_key
+
+    def fetch_weather(self, city):
         pass
 
-    def get_weather():
-        #get weather data
-        #match the status code in a match case statement which will then send the error code to be displayed via display_error
+    @staticmethod
+    def kelvin_to_fahrenheit(kelvin):
         pass
 
-
-
-    #I SHOULD PROB MOVE THE DISPLAY STUFF TO THE GUI APP, AND KEEP ALL THE CONVERSION STUFF HERE, IN A DIFFERENT FUNCTION
-    def display_weather():
-        #does all conversions then display
+    @staticmethod
+    def get_weather_emoji(weather_id):
         pass
-
-    def display_error():
-        pass
-
